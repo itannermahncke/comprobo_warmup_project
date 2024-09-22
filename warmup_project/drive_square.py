@@ -83,8 +83,10 @@ class DriveSquareNode(Node):
                 self.active_goal += 1
                 self.lin_or_ang = not self.lin_or_ang
 
-                # if the end is reached, be done :)
+                # if the end is reached, stop moving and be done
                 if self.active_goal == len(self.state_goals):
+                    end_msg = Twist()
+                    self.vel_publisher.publish(end_msg)
                     self.cmd_timer.destroy()
 
             # then iterate on current state (either move forward or turn left)
