@@ -79,7 +79,7 @@ In this challenge, the wall_follower node instructs the Neato to approach a wall
 
 ### Visualization
 
-![](https://github.com/itannermahncke/comprobo_warmup_project/blob/main/images/Wall_Follower_Rviz.gif)
+
 
 Shown here is an Rviz gif of what the Neato "sees". The flickering blue dots represent the two ranges that the Neato uses to approximate its angle relative to the wall. As you can see, the dots are far beyond where they should be, which implies that something is faulty with the Neato's ability to truly identify those points.
 
@@ -99,7 +99,7 @@ In this challenge, the person_follower node instructs the Neato to identify and 
 
 ### Visualization
 
-![](https://github.com/itannermahncke/comprobo_warmup_project/blob/main/images/Person_Follower_Rviz.mp4)
+https://github.com/user-attachments/assets/adc1935a-4b86-43f6-be9f-4f7d2b002155
 
 ### Challenges and reflection
 
