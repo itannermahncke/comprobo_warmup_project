@@ -1,4 +1,4 @@
-# comprobo_warmup_project
+# CompRobo Warmup Project
 By Ivy Mahncke and Jiayi Shao
 
 ## Introduction
@@ -73,4 +73,34 @@ My current theory on this is that as the robot progressed through the square, it
 
 ## Behavior #3: Wall Following
 
+### Description and process
+
+In this challenge, the wall_follower node instructs the Neato to approach a wall in front of it and then drive parallel to that wall.
+
+### Visualization
+
+![](https://github.com/itannermahncke/comprobo_warmup_project/blob/main/images/Wall_Follower_Rviz.gif)
+
+Shown here is an Rviz gif of what the Neato "sees". The flickering blue dots represent the two ranges that the Neato uses to approximate its angle relative to the wall. As you can see, the dots are far beyond where they should be, which implies that something is faulty with the Neato's ability to truly identify those points.
+
+### Challenges and reflection
+
+- investigate strange visual behavior (and understand trig better)
+- Has to start pointed at a wall - remove this constraint
+- Incoporate the tf module to learn about reference frames
+- Code that reacts to a corner, turns and keeps following (third state)
+- React to left walls, not just right walls
+
 ## Behavior #4: Person Following
+
+### Description and process
+
+In this challenge, the person_follower node instructs the Neato to identify and follow a person around.
+
+### Visualization
+
+### Challenges and reflection
+
+- averaging needed to happen in cartesian, not polar
+- filtering bad r values made everything much more functional
+- more time: tune PID values rather than using fancy porportional control
