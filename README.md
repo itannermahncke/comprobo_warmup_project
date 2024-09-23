@@ -79,7 +79,7 @@ In this challenge, the wall_follower node instructs the Neato to approach a wall
 
 ### Visualization
 
-
+![Wall_Follower_Rviz](https://github.com/user-attachments/assets/5276855b-540a-4797-89ca-231ba17aebb3)
 
 Shown here is an Rviz gif of what the Neato "sees". The flickering blue dots represent the two ranges that the Neato uses to approximate its angle relative to the wall. As you can see, the dots are far beyond where they should be, which implies that something is faulty with the Neato's ability to truly identify those points.
 
