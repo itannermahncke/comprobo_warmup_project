@@ -151,7 +151,7 @@ class WallFollowNode(Node):
         """
         Return True if range is a usable number; false if not.
         """
-        if r != 0.0 and not math.isinf(r):
+        if r != 0.0 and not math.isinf(r) and r < 1.0:
             return True
         return False
 
