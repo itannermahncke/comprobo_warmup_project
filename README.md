@@ -99,8 +99,10 @@ In this challenge, the person_follower node instructs the Neato to identify and 
 
 ### Visualization
 
+![](https://github.com/itannermahncke/comprobo_warmup_project/blob/main/images/Person_Follower_Rviz.mp4)
+
 ### Challenges and reflection
 
 - averaging needed to happen in cartesian, not polar
-- filtering bad r values made everything much more functional
+- filtering bad r values made everything much more functional -> thank you rviz!!!
 - more time: tune PID values rather than using fancy porportional control
