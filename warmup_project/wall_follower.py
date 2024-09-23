@@ -19,13 +19,9 @@ class WallFollower(Node):
         self.create_timer(0.1, self.run_loop)
         self.create_subscription(LaserScan, 'scan', self.process_scan, qos_profile=qos_profile_sensor_data)
         self.vel_pub = self.create_publisher(Twist, 'cmd_vel', 10)
-        # distance_to_wall is used to communciate laser data to run_loop
-        self.distance_to_wall = None
         # Kp is the constant or to apply to the proportional error signal
         self.Kp = 0.4
         self.vel = 0.1
-        # target_distance is the desired distance to the wall in front
-        self.target_distance = 1.2
 
     def handle_estop(self, msg):
         """Handles messages received on the estop topic.
@@ -63,13 +59,11 @@ class WallFollower(Node):
             self.drive(linear=0.0, angular=0.1)
             sleep(math.pi / 0.1 / 2)
             self.drive(linear=0.0, angular=0.0)
-        
         #fwd_msg = Twist()
         #fwd_msg.angular.z = self.vel * 2
         #self.vel_publisher.publish(fwd_msg)
 
-    def run_loop(self):
-        
+    def run_loop(self): 
         msg = Twist()
         if self.distance_to_wall is None:
             # if we have detected a wall, turn accordingly
@@ -82,7 +76,7 @@ class WallFollower(Node):
     def process_scan(self, msg):
         if msg.ranges[0] != 0.0:
             # checking for the value 0.0 ensures the data is valid.
-            # Your logic here!
+            # getting the distances/angles from the scanner...
             print('scan received', msg.ranges[0])
 
     def angle_normalize(z):
