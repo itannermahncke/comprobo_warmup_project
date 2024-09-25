@@ -64,9 +64,9 @@ class ObstacleAvoidNode(Node):
 
         # only go forward if ranges have been taken
         if len(self.left_scans[1]) > 0 and len(self.right_scans[1]) > 0:
-            # flip max range (so small values create big coefficients, and vice versa)
-            left_k = 1.0 / max(self.left_scans[1])
-            right_k = 1.0 / max(self.right_scans[1]) * -1
+            # flip shortest range (so small values create big coefficients, and vice versa)
+            left_k = 1.0 / min(self.left_scans[1]) * -1
+            right_k = 1.0 / min(self.right_scans[1])
             vel_msg.angular.z = 0.1 * (left_k + right_k)
         else:
             print("WARN: NO DATA TO TURN")
@@ -93,19 +93,19 @@ class ObstacleAvoidNode(Node):
             # only examine good quality ranges
             if self.determine_range_quality(r):
                 # if scan is on the left side
-                if 0.0 < angle < self.fov:
+                if abs(angle - 360) < self.fov:
+                    print(f"Left angle: {angle}")
                     self.left_scans[0].append(angle)
                     self.left_scans[1].append(r)
                     avg_r.append(r)
                     self.mark(r, angle, i, "left")
                 # if scan is on the right side
-                elif 360.0 - self.fov < angle < 360.0:
+                elif 0.0 < angle < self.fov:
+                    print(f"Right angle: {angle}")
                     self.right_scans[0].append(angle)
                     self.right_scans[1].append(r)
                     avg_r.append(r)
                     self.mark(r, angle, i, "right")
-
-        self.mark(0.0, 0.0, 0, "robot")
 
         # compute closest range
         if len(avg_r) > 0:
