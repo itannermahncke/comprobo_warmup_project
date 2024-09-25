@@ -1,8 +1,6 @@
 # CompRobo Warmup Project
 By Ivy Mahncke and Jiayi Shao
 
-## Introduction
-
 ## Behavior #1: Teleoperated
 
 ### Description and process
@@ -186,7 +184,11 @@ vel_msg.angular.z = 0.1 * (left_k + right_k)
 
 While this is sound in theory, my obstacle avoider was very poor in practice. My node inconsistently identified obstacles, and when it did identify them it only reacted somewhat well to avoiding them. One common problem I had was that when the Neato got too close, it wouldn't turn at all. This makes sense conceptually -- when facing an obstacle, the Neato had comporable amounts of left and right scans, and could not make a decision. However, I believe that its problem was much more deep rooted. One clue I noticed was that the Neato wouldn't stop driving even when too close to an obstacle, as it was meant to due to this logic:
 ```
-
+# don't turn if too close
+if self.closest_r > 0.3:
+    vel_msg.linear.x = 0.1
+else:
+    print(f"Too close to drive forward: {self.closest_r}.")~~~
 ```
 
 If the Neato was properly processing its scan data, this would not be a problem. However, its failure to even stop driving when an obstacle is too close leads me to my final theory: the way that the Neato was sorting and processing its scans was fundamentally flawed. While I unfortunately ran out of time to investigate this further, I was able to gather more clues by employing the use of Rviz.
